@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180517160837) do
+ActiveRecord::Schema.define(version: 20180517162716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 20180517160837) do
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "team_histories", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.bigint "mission_id", null: false
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mission_id"], name: "index_team_histories_on_mission_id"
+    t.index ["team_id"], name: "index_team_histories_on_team_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -66,4 +76,6 @@ ActiveRecord::Schema.define(version: 20180517160837) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "team_histories", "missions"
+  add_foreign_key "team_histories", "teams"
 end

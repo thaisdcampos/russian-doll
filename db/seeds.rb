@@ -6,9 +6,11 @@ Mission.delete_all
 puts 'Creating users'
 gamora = User.create!(name: 'Gamora', email: 'gamora@gmail.com', password: '123123', confirmed_at: Time.now)
 
-
 puts 'Creating teams'
-Team.create!(name: 'Guardiões da Galáxia')
+team = Team.create!(name: 'Guardiões da Galáxia')
 
 puts 'Creating missions'
-Mission.create!(name: 'Russian doll', history: 'Once upon a time ...', start_date: '05/12/2018', end_date: '06/12/2018')
+mission = Mission.create!(name: 'Russian doll', history: 'Once upon a time ...', start_date: '05/12/2018', end_date: '06/12/2018')
+
+puts 'Creating team history'
+TeamHistory.create!(team: team, mission: mission, points: 10)
