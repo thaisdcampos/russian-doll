@@ -1,7 +1,8 @@
 puts 'Deleting old data...'
-Team.delete_all
-User.delete_all
-Mission.delete_all
+Team.destroy_all
+User.destroy_all
+Mission.destroy_all
+Puzzle.destroy_all
 
 puts 'Creating users'
 gamora = User.create!(name: 'Gamora', email: 'gamora@gmail.com', password: '123123', confirmed_at: Time.now)
@@ -14,3 +15,6 @@ mission = Mission.create!(name: 'Russian doll', history: 'Once upon a time ...',
 
 puts 'Creating team history'
 TeamHistory.create!(team: team, mission: mission, points: 10)
+
+puts 'Creating puzzle'
+Puzzle.create!(puzzle_type: 'Poem', name: 'Vault', attempts_interval: 180)
