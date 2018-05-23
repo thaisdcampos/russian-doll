@@ -17,4 +17,7 @@ puts 'Creating team history'
 TeamHistory.create!(team: team, mission: mission, points: 10)
 
 puts 'Creating puzzle'
-Puzzle.create!(puzzle_type: 'Poem', name: 'Vault', attempts_interval: 180)
+puzzle = Puzzle.create!(puzzle_type: 'Poem', name: 'Vault', attempts_interval: 180)
+
+puts 'Creating puzzle hint'
+PuzzleHint.create!(puzzle: puzzle, text: 'Hint of coins')

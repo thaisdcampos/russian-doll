@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180523154940) do
+ActiveRecord::Schema.define(version: 20180523163026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 20180523154940) do
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "puzzle_hints", force: :cascade do |t|
+    t.bigint "puzzle_id", null: false
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["puzzle_id"], name: "index_puzzle_hints_on_puzzle_id"
   end
 
   create_table "puzzles", force: :cascade do |t|
@@ -87,6 +95,7 @@ ActiveRecord::Schema.define(version: 20180523154940) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "puzzle_hints", "puzzles"
   add_foreign_key "team_histories", "missions"
   add_foreign_key "team_histories", "teams"
 end
